@@ -25,7 +25,7 @@ public class InvokeLogAspect {
 
 	}**/
 	
-	@Around("execution(* com.pmec.ygy.portal.web..*(..))")
+	@Around("execution(* com.xxx.portal.web..*(..))")
 	public Object around2(ProceedingJoinPoint joinPoint) throws Throwable {
 		joinPoint.getSignature().toShortString();
 		logTheCall(joinPoint);

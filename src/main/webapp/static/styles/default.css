@@ -20,17 +20,6 @@ body {
   padding-left: 15px;
   padding-top: 15px;
 }
-
-/*ΨƷ�ᵼ��*/
-.navbar-pmec {
-  background-color: #F87B00;
-  border-color: #F87B00;
-  color:#fff;
-}
-.navbar-pmec>a:focus, a:hover {
-color: #fff;
-text-decoration: underline;
-}
 .nav>li>a {
 color: #fff;
 }
@@ -52,7 +41,7 @@ font-size: 18px;
 line-height: 20px;
 color:#fff;
 }
-.navbar-pmec>a:focus, a:hover {
+.navbar-xxx>a:focus, a:hover {
 color: #fff;
 text-decoration: underline;
 }
@@ -92,7 +81,7 @@ border-color: #FF9600;
 .admin_notice .wel_user,.admin_notice .wel_txt { text-align: center; }
 .user-no { color:#ff9547; font-size:26px; }
 
-.pmec-logo { background:url(../images/pmec-logo.png) no-repeat left center; padding-left:60px; margin-left:15px!important; }
+.xxx-logo { background:url(../images/xxx-logo.png) no-repeat left center; padding-left:60px; margin-left:15px!important; }
 .loc { border-bottom: 1px solid #ddd; padding-bottom:15px; font-size:12px; color:#999; }
 .loc .loc_mark { margin:0 1em; }
 

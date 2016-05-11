@@ -19,8 +19,8 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://120.25.211.196:3306/peng_test?characterEncoding=UTF-8"
-			userId="ygyenter" password="pmec9999">
+			connectionURL="jdbc:mysql://localhost:3306/rz_portal?characterEncoding=UTF-8"
+			userId="root" password="123456">
 		</jdbcConnection>
 
 		<!-- model的配置 -->
@@ -42,7 +42,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table schema="peng_test" tableName="占位符" domainObjectName="占位符" />
+		<table schema="rz_portal" tableName="占位符" domainObjectName="占位符" />
 
 	</context>
 </generatorConfiguration> 

@@ -1,0 +1,125 @@
+body {
+  padding-top: 50px;  
+  /* Margin bottom by footer height */
+  margin-bottom: 50px;
+}
+.starter-template {
+   padding-top: 12px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #f5f5f5;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+/*ΨƷ�ᵼ��*/
+.navbar-pmec {
+  background-color: #F87B00;
+  border-color: #F87B00;
+  color:#fff;
+}
+.navbar-pmec>a:focus, a:hover {
+color: #fff;
+text-decoration: underline;
+}
+.nav>li>a {
+color: #fff;
+}
+.nav>li>a:hover {
+text-decoration: none;
+background-color: #FF9600;
+color: #fff;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+background-color: #FF9600;
+border-color: #FF9600;
+}
+.navbar-brand {
+float: left;
+height: 50px;
+padding: 15px 15px;
+font-size: 18px;
+line-height: 20px;
+color:#fff;
+}
+.navbar-pmec>a:focus, a:hover {
+color: #fff;
+text-decoration: underline;
+}
+.for-link a:focus, .for-link a:hover, .loc a:focus, .loc a:hover { color: #f87b00; }
+.active {
+background-color: #FF9600;
+border-color: #FF9600;
+}
+.previewDiv {
+  position: absolute;
+  top: 100px;
+  right: 500px;
+  width: 270px;
+  padding: 15px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border: solid 1px #e9e9e9;
+  min-height: 240px;
+}
+
+.previewDiv h3 {
+  line-height: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.previewDiv img {
+  margin: 10px 0;
+}
+
+.admin_notice { min-height:460px; font-size:24px; padding-top:80px; }
+.admin_notice .wel_user,.admin_notice .wel_txt { text-align: center; }
+.user-no { color:#ff9547; font-size:26px; }
+
+.pmec-logo { background:url(../images/pmec-logo.png) no-repeat left center; padding-left:60px; margin-left:15px!important; }
+.loc { border-bottom: 1px solid #ddd; padding-bottom:15px; font-size:12px; color:#999; }
+.loc .loc_mark { margin:0 1em; }
+
+.left-side { width:280px; }
+.right-side { width:auto;overflow:hidden; float:none; margin-left:280px; }
+.form-inline .form-group { margin-right:2em; }
+
+.action-btn-bar { position:absolute; margin-top:-49px; }
+.app-p-relative { position:relative; }
+.bg-color { background:none #f9f9f9; }
+.bg-img { background:url(../images/wel-bg.png) no-repeat center bottom #f9f9f9; }
+.bg-white-color { background-color:#f9f9f9; }
+.app-table-box { padding:20px; background-color:#FFFFFF; border-radius:1em; border:1px solid #f4f5f9; }
+.app-border-top { border-top:1px solid #ddd; }
+.app-border-bottom { border-bottom:1px solid #ddd; }
+.aside-sub-nav { padding:20px 0; background-color:#fff; border:1px solid #f4f5f9; min-height:785px; }
+
+/*按钮*/
+.btn-primary { background-color: #f87b00; border-color: #f87b00; }
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+    background-color: #f87b00; border-color: #f87b00; }
+.btn-primary:hover {  background-color: #e96900; border-color: #e96900; }
+
+/*分页*/
+.pagination > li > a, .pagination > li > span { color: #f87b00; }
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #f87b00; border-color: #f87b00; color: #fff; }
+ .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+     background-color: #eee; border-color: #ddd; color: #e96900;}
+ 

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd"
+	default-lazy-init="true">
+
+	<description>Spring公共配置 </description>
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.xxx.portal">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+	
+	 <!--  
+   	<aop:aspectj-autoproxy proxy-target-class="true" />  
+   	<context:component-scan base-package="com.xxx.portal" />  
+   	 -->
+   	 
+	<!-- Jpa Entity Manager 配置 -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan" value="com.xxx.portal" />
+		<property name="jpaProperties">
+			<props>
+				<!-- 命名规则 My_NAME->MyName -->
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform">
+			<bean factory-method="getDialect"
+				class="org.springside.modules.persistence.Hibernates">
+				<constructor-arg ref="dataSource" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Spring Data Jpa配置 -->
+	<jpa:repositories base-package="com.xxx.portal"
+		transaction-manager-ref="transactionManager"
+		entity-manager-factory-ref="entityManagerFactory" />
+
+	<!-- Jpa 事务配置 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!--MyBatis配置 -->
+	
+	<bean id ="sqlSessionFactory"	class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name ="dataSource" ref="dataSource" />
+		 <property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- 显式指定Mapper文件位置 -->
+		<property name = "mapperLocations"	value="classpath:/mybatis/*Mapper.xml" />
+		
+	</bean>
+	<bean id="sqlSessionTemplate"     class="org.mybatis.spring.SqlSessionTemplate">  
+          <constructor-arg index="0" ref="sqlSessionFactory" />  
+      </bean> 
+
+		<!-- 使用annotation定义事务 -->
+		<tx:annotation-driven transaction-manager="transactionManager"
+			proxy-target-class="true" />
+
+		<!-- JSR303 Validator定义 -->
+		<bean id="validator"
+			class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+   		<bean id="config" class="com.xxx.portal.commons.Config">
+			<property name="batchFilePath" value="/Users/peng/test/batchfile"></property>
+		</bean>
+		
+		<bean id="cache" class="com.xxx.portal.cache.impl.SoftHashMapCacheImpl"/>
+		
+		<!-- production环境 -->
+		<beans profile="production">
+			<context:property-placeholder
+				ignore-unresolvable="true" location="classpath*:/application.properties,
+				file:/apps/javaconf/ygy/rz-portal/config_external.properties" />
+
+			<!-- 数据源配置, 使用Tomcat JDBC连接池 -->
+			<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+				destroy-method="close">
+				<!-- Connection Info -->
+				<property name="driverClassName" value="${connection.class}" />
+				<property name="url" value="${connection.url}" />
+				<property name="username" value="${connection.username}" />
+				<property name="password" value="${connection.password}" />
+				<!-- Connection Pooling Info -->
+				<property name="maxActive" value="200" />
+				<property name="maxIdle" value="80" />
+				<property name="minIdle" value="0" />
+				<property name="defaultAutoCommit" value="false" />
+			</bean>
+
+			<bean id="config" class="com.xxx.portal.commons.Config">
+				<!-- 其余配置 -->
+				<property name="imgPath" value="${imgPath}"></property>
+				<property name="batchFilePath" value="${batchFilePath}"></property>
+			</bean>
+		</beans>
+
+		<!-- local development环境 -->
+		<beans profile="development">
+			<context:property-placeholder
+				ignore-resource-not-found="true"
+				location="classpath*:/application.properties"/>
+			<!-- Tomcat JDBC连接池 -->
+			<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+				destroy-method="close">
+				<property name="driverClassName" value="${connection.class}" />
+				<property name="url" value="${connection.url}" />
+				<property name="username" value="${connection.username}" />
+				<property name="password" value="${connection.password}" />
+				<property name="maxActive" value="200" />
+				<property name="maxIdle" value="80" />
+				<property name="minIdle" value="0" />
+				<property name="defaultAutoCommit" value="false" />
+			</bean>
+			<bean id="config" class="com.xxx.portal.comm.Config">
+				<!-- 其余配置 -->
+				<property name="imgPath" value="${imgPath}"></property>
+				<property name="batchFilePath" value="${batchFilePath}"></property>
+			</bean>
+		</beans>
+</beans>

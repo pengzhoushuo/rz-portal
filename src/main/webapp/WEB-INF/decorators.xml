@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/layouts/">
+	<excludes>
+		<pattern>/static/*</pattern>
+		<pattern>/api/*</pattern>
+		<pattern>/health_check/*</pattern> 
+		<pattern>/health_check</pattern> 
+		<pattern>/orginfo/listtree</pattern> 
+		<pattern>/adminlogin</pattern> 
+		<pattern>/file/*</pattern> 
+	</excludes>
+	
+	<decorator name="default" page="default.jsp">
+		<pattern>/orginfo/*</pattern>
+		<pattern>/memberuser/*</pattern>
+		<pattern>/notice/*</pattern>
+		<pattern>/feedback/*</pattern>
+		<pattern>/dict/*</pattern>
+		<pattern>/loglogin/*</pattern>
+		<pattern>/errorlog/*</pattern>
+		<pattern>/user/*</pattern>
+		<excludes> 
+			<pattern>/orginfo/listtree</pattern> 
+		</excludes> 
+	</decorator>
+	<decorator name="loginlayout" page="loginlayout.jsp">
+		<pattern>/login/*</pattern>
+		<pattern>/login*</pattern>
+		<excludes> 
+			<pattern>/login/health_check</pattern> 
+		</excludes> 
+	</decorator>
+</decorators>

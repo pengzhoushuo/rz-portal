@@ -1,0 +1,2 @@
+mkdir -p /data/upload/img
+mkdir -p /data/upload/batchfile

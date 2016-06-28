@@ -26,7 +26,6 @@ public class LoginCheckFilter extends HttpServlet implements Filter{
 	static{
 		freeResources.put("static", "");
 		freeResources.put("login", "");
-		freeResources.put("adminlogin", "");
 		freeResources.put("health_check", "");
 		freeResources.put("rndcode", "");
 	}
